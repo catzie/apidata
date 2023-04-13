@@ -24,6 +24,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "TEST_REQUEST_URL", secretProperties['TEST_REQUEST_URL'])
+        buildConfigField("String", "API_KEY", secretProperties['API_KEY'])
     }
 
     buildTypes {
