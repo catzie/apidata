@@ -4,10 +4,17 @@ plugins {
 }
 
 android {
+
+    def secretPropertiesFile = rootProject.file("keys.properties")
+    def secretProperties = new Properties()
+    secretProperties.load(new FileInputStream(secretPropertiesFile))
+
+
     namespace 'net.catzie.apidata'
     compileSdk 33
 
     defaultConfig {
+
         applicationId "net.catzie.apidata"
         minSdk 24
         targetSdk 33
@@ -15,6 +22,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "TEST_REQUEST_URL", secretProperties['TEST_REQUEST_URL'])
     }
 
     buildTypes {
