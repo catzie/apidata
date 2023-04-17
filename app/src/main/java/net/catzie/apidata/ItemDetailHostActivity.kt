@@ -23,8 +23,10 @@ class ItemDetailHostActivity : AppCompatActivity() {
     val requestUrl = BuildConfig.TEST_REQUEST_URL
     val apiKey = BuildConfig.API_KEY
 
-    // Create a GsonBuilder instance
-    val gson = GsonBuilder().setPrettyPrinting().create()
+    // Create a GsonBuilder instance as needed
+    val gson by lazy {
+        GsonBuilder().setPrettyPrinting().create()
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
