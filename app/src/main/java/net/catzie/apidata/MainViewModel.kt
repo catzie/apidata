@@ -2,9 +2,12 @@ package net.catzie.apidata
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
@@ -17,11 +20,10 @@ class MainViewModel : ViewModel() {
     // Create a GsonBuilder instance as needed
     val gson by lazy { GsonBuilder().setPrettyPrinting().create() }
 
-    @OptIn(DelicateCoroutinesApi::class)
     fun getMethod() {
 
         // Launch coroutine where we'll run the network request
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
 
             // Create reference to the API URL
             val url = URL(requestUrl)
